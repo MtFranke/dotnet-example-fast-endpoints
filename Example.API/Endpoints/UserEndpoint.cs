@@ -6,7 +6,7 @@ namespace Example.API.Endpoints;
 
 public class UserEndpoint : Endpoint<UserRegisterRequest>
 {
-    public IUserService Service { get; set; }
+    public IUserService Service { get; set; } = null!;
 
     public override void Configure()
     {
@@ -17,6 +17,6 @@ public class UserEndpoint : Endpoint<UserRegisterRequest>
     public override Task HandleAsync(UserRegisterRequest req, CancellationToken ct)
     {
         Service.Register();
-        return base.HandleAsync(req, ct);
+        return SendAsync(req, StatusCodes.Status204NoContent, ct);
     }
 }

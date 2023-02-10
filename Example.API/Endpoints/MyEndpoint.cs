@@ -9,6 +9,8 @@ public class MyEndpoint: Endpoint<MyRequest>
     {
         Post("/api/user/create");
         AllowAnonymous();
+        DontThrowIfValidationFails();
+
     }
 
     public override async Task HandleAsync(MyRequest req, CancellationToken ct)
